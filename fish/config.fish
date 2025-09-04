@@ -1,32 +1,24 @@
-# if status is-interactive
-# end
+if status is-interactive
+    bind -M insert ctrl-r history-pager
+	abbr work_dir "~/Desktop/10xAssignments"
+	alias clang-format clang-format-21
+end
 
-# Color is ayu mirage
-#
-#----------- Aliases -----------
-abbr --add partition --position anywhere "/mnt/Badar_ki_Bhans/"
-
-#----------- NVIM Settings -----------
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-
-#----------- VI Key Binds -----------
-function modified_vi_keybinds
+function modified_fish_vi_key_bindings
 	fish_vi_key_bindings
 	bind -M insert ctrl-f accept-autosuggestion
 end
+set -g fish_key_bindings modified_fish_vi_key_bindings
 
-set -g fish_key_bindings modified_vi_keybinds
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
-#----------- Git -----------
-function git_auto_push
-	set un "SyedMIrtazaHyder"
-	set pass "$(cat /mnt/Badar_ki_Bhans/github/githubToken | head -n1)"
-	set repo $(git remote -v | head -n1 | egrep -o "github.com/[^ ]+*")
-	set branch $1
+export EDITOR="/opt/nvim-linux-x86_64/bin/nvim"
+export RISCV="/home/lpt-10xe-10/Desktop/10xAssignments/RISCV64/riscv64-unknown-elf-toolchain"
+export PATH="$PATH:$RISCV/bin"
 
-	set origin "https://$un:$pass@$repo"
-
-	git push $origin $branch
+function mcd
+	mkdir -p $argv
+	cd $argv[1]
 end
-
-abbr --add gp --function git_auto_push
+# running nvm to get node working for LSP
+# nvm install 22
