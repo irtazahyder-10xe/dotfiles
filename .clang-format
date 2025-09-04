@@ -1,0 +1,8 @@
+---
+Language: C
+BasedOnStyle: GNU
+IndentWidth: 4
+ColumnLimit: 120
+AlignAfterOpenBracket: BAS_Align
+AlignConsecutiveBitFields: Consecutive
+
