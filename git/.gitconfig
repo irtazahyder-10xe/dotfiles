@@ -1,0 +1,13 @@
+[core]
+	editor = nvim
+	excludesfile = ~/lpt-10xe-10/.config/.global_gitignore
+[init]
+	defaultBranch = main
+[user]
+	email = irtaza.hyder@10xengineers.ai
+	name = irtaza-10x
+[commit]
+	template = ~/lpt-10xe-10/.config/.commit_template
+[alias]
+	graph = log --all --graph --decorate --oneline
+	s = status
