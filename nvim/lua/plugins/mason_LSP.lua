@@ -32,16 +32,11 @@ return {
 			lspconfig.jedi_language_server.setup({
 				capabilities = capabilities
 			})
-			lspconfig.asm_lsp.setup({
-				  cmd = { "asm-lsp" }, -- This is the command for the asm-lsp server (default: "asm-lsp")
-				  filetypes = { "asm", "nasm", "gas" }, -- Filetypes supported by asm-lsp
-				  settings = {},
-			})
 
 			vim.diagnostic.config({
 				virtual_text = true,
-			})
-
+			}
+			)
 		end
 	},
 }
