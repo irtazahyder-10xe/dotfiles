@@ -37,11 +37,12 @@ function mcd
 	cd $argv[1]
 end
 
-# running nvm to get node working for LSP
-# nvm install 22
-
-function git_auto_push -d "Push to remote repo"
+function git_auto_push -a branch -d "Push to remote repo"
 	set un "irtazahyder-10xe"
 	set pass "$(tail -n1 ~/.config/.github_token)"
 	set repo $(git remote -v | head -n1 | egrep -o "github.com/[^ ]+*")
-	set branch $1
+
+	set origin "https://$un:$pass@$repo"
+
+	git push $origin $branch
+end

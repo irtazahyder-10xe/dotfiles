@@ -9,10 +9,10 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
-			'cmp-nvim-lsp'
+			'hrsh7th/cmp-nvim-lsp'
 		},
 		config = function()
-			local cmp = require 'cmp'
+			local cmp = require('cmp')
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
@@ -39,7 +39,7 @@ return {
 					{ name = 'buffer' },
 				})
 			})
-
 		end
 	}
 }
+
