@@ -10,21 +10,12 @@ fish_config theme choose "Catppuccin Mocha"
 # ======================== ALIAS & KEYBINDS ======================== 
 if status is-interactive
     bind -M insert \cr history-pager
-	abbr work_dir "~/Desktop/10xAssignments"
-	alias clang-format clang-format-21
 	alias ... "cd ../.."
 	alias .... "cd ../../.."
-	alias logisim "java -jar ~/Downloads/logisim-evolution-4.0.0-all.jar"
-	alias vcs "docker start synopsys_vcs-synopsys-1; docker attach synopsys_vcs-synopsys-1"
+    register-python-argcomplete --shell fish pipx >~/.config/fish/completions/pipx.fish
 end
 
 # ======================== CUSTOM FUNCTIONS ======================== 
-
-# alias apps "slack >/dev/null 2>&1 &; google-chrome >/dev/null 2>&1 &;"
-function apps -d "Runs slack and chrome";
-	slack >/dev/null 2>&1 &
-	google-chrome >/dev/null 2>&1 &
-end
 
 function modified_fish_vi_key_bindings
 	fish_vi_key_bindings
@@ -37,17 +28,10 @@ function mcd
 	cd $argv[1]
 end
 
-function git_auto_push -a branch -d "Push to remote repo"
-	set un "irtazahyder-10xe"
-	set pass "$(tail -n1 ~/.config/.github_token)"
-	set repo $(git remote -v | head -n1 | egrep -o "github.com/[^ ]+*")
-
-	set origin "https://$un:$pass@$repo"
-
-	git push $origin $branch
-end
-
 function patch_font -a font -d "Patches a given nerd font from zip file in the current directory"
 	sudo unzip $font -d /usr/share/fonts/
 	sudo fc-cache -fv
 end
+
+# Created by `pipx` on 2026-03-07 10:02:57
+set PATH $PATH /home/hydeminister/.local/bin
