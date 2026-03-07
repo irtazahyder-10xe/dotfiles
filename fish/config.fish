@@ -5,7 +5,7 @@ export RISCV="/home/lpt-10xe-10/Desktop/10xAssignments/RISCV64/riscv64-unknown-e
 export PATH="$PATH:$RISCV/bin"
 
 # ======================== FISH CONFIGS ======================== 
-fish_config theme choose "Catppuccin Mocha" --color-theme=dark
+fish_config theme choose "Catppuccin Mocha"
 
 # ======================== ALIAS & KEYBINDS ======================== 
 if status is-interactive
