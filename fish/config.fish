@@ -9,7 +9,7 @@ fish_config theme choose "Catppuccin Mocha"
 
 # ======================== ALIAS & KEYBINDS ======================== 
 if status is-interactive
-    bind -M insert ctrl-r history-pager
+    bind -M insert \cr history-pager
 	abbr work_dir "~/Desktop/10xAssignments"
 	alias clang-format clang-format-21
 	alias ... "cd ../.."
@@ -28,7 +28,7 @@ end
 
 function modified_fish_vi_key_bindings
 	fish_vi_key_bindings
-	bind -M insert ctrl-f accept-autosuggestion
+	bind -M insert \cf accept-autosuggestion
 end
 set -g fish_key_bindings modified_fish_vi_key_bindings
 

@@ -1,0 +1,28 @@
+#! /usr/bin/env bash
+
+sudo apt install coreutils
+sudo apt install build-essential
+sudo apt install git
+sudo apt install curl
+sudo apt install fish
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
+
+# Generating symbolic links for configs
+
+ln -s nvim/ $HOME/.config/nvim/
+ln -s fish/ $HOME/.config/fish/
+ln -s tmux.conf $HOME
+
+for entry in (ls -A git); do
+	ln -s $entry $HOME
+done
+
+## GUI based apps
+sudo apt install gparted
+sudo apt install gnome-tweaks
+
+## This will work after rebooting the system
+chsh -s /usr/bin/fish
