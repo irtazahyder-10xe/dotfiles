@@ -46,3 +46,8 @@ function git_auto_push -a branch -d "Push to remote repo"
 
 	git push $origin $branch
 end
+
+function patch_font -a font -d "Patches a given nerd font from zip file in the current directory"
+	sudo unzip $font -d /usr/share/fonts/
+	sudo fc-cache -fv
+end
