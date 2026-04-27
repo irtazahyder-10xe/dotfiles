@@ -1,0 +1,66 @@
+#! /usr/bin/env bash
+
+# Running script with sudo
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root (use sudo)"
+   exit 1
+fi
+
+apt install coreutils
+apt install build-essential
+apt install git
+apt install curl
+apt install fish
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
+
+# Generating symbolic links for configs
+
+ln -s nvim/ $HOME/.config/nvim/
+ln -s fish/ $HOME/.config/fish/
+ln -s tmux.conf $HOME
+
+for entry in (ls -A git); do
+	ln -s $entry $HOME
+done
+
+## Installing neovim
+URL_FILE="urls.txt"
+TEMP_DIR="/tmp/tar_downloads"
+
+mkdir -p "$TEMP_DIR"
+
+echo "Downloading files from $URL_FILE..."
+wget -q -i "$URL_FILE" -P "$TEMP_DIR"
+
+## TODO: Fix fish paths to executables
+for filename in "$TEMP_DIR"/*.tar.gz; do
+    [ -e "$filename" ] || continue # Handle empty directory case
+
+    # ${basename%%_*} deletes the longest match of _* from the back.
+    # Result: "tests_1.2.tar.gz" -> "tests"
+    prefix="${filename%%.tar.gz*}"
+
+    DEST="/opt/$folder"
+    mkdir -p "$DEST"
+
+    echo "Extracting $filename to $DEST..."
+    tar -xzf "$filename" -C "$DEST"
+done
+
+rm -rf "$TEMP_DIR"
+
+## Python3 dependencies
+apt install python3-pip
+apt install pipx
+
+## GUI based apps
+apt install gparted
+apt install gnome-tweaks
+
+## This will work after rebooting the system
+chsh -s /usr/bin/fish
+
+apt full-upgrade

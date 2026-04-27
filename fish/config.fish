@@ -1,32 +1,37 @@
-# if status is-interactive
-# end
-
-# Color is ayu mirage
-#
-#----------- Aliases -----------
-abbr --add partition --position anywhere "/mnt/Badar_ki_Bhans/"
-
-#----------- NVIM Settings -----------
+# ======================== ENV VARS ======================== 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export EDITOR="/opt/nvim-linux-x86_64/bin/nvim"
+export RISCV="/home/lpt-10xe-10/Desktop/10xAssignments/RISCV64/riscv64-unknown-elf-toolchain"
+export PATH="$PATH:$RISCV/bin"
 
-#----------- VI Key Binds -----------
-function modified_vi_keybinds
+# ======================== FISH CONFIGS ======================== 
+fish_config theme choose "Catppuccin Mocha"
+
+# ======================== ALIAS & KEYBINDS ======================== 
+if status is-interactive
+    bind -M insert \cr history-pager
+	alias ... "cd ../.."
+	alias .... "cd ../../.."
+    register-python-argcomplete --shell fish pipx >~/.config/fish/completions/pipx.fish
+end
+
+# ======================== CUSTOM FUNCTIONS ======================== 
+
+function modified_fish_vi_key_bindings
 	fish_vi_key_bindings
-	bind -M insert ctrl-f accept-autosuggestion
+	bind -M insert \cf accept-autosuggestion
+end
+set -g fish_key_bindings modified_fish_vi_key_bindings
+
+function mcd
+	mkdir -p $argv
+	cd $argv[1]
 end
 
-set -g fish_key_bindings modified_vi_keybinds
-
-#----------- Git -----------
-function git_auto_push
-	set un "SyedMIrtazaHyder"
-	set pass "$(cat /mnt/Badar_ki_Bhans/github/githubToken | head -n1)"
-	set repo $(git remote -v | head -n1 | egrep -o "github.com/[^ ]+*")
-	set branch $1
-
-	set origin "https://$un:$pass@$repo"
-
-	git push $origin $branch
+function patch_font -a font -d "Patches a given nerd font from zip file in the current directory"
+	sudo unzip $font -d /usr/share/fonts/
+	sudo fc-cache -fv
 end
 
-abbr --add gp --function git_auto_push
+# Created by `pipx` on 2026-03-07 10:02:57
+set PATH $PATH /home/hydeminister/.local/bin

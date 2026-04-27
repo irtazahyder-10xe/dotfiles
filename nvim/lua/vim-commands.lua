@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 vim.opt.number = true
-vim.opt.mouse = ''
+vim.opt.mouse = 'a'
 vim.opt.showmode = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
@@ -31,6 +31,11 @@ vim.opt.inccommand = 'split'
 
 -- Minimal number of screen lines to keep above and below the cursor.
 -- vim.opt.scrolloff = 10
+vim.keymap.set('n', '<leader>d', function() vim.diagnostic.open_float() end)
+vim.keymap.set('t', '<C-n>', "<C-\\><C-n><C-w>l",{silent = true})
 
-vim.keymap.set("n", "<leader>d", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-vim.keymap.set("t", "<C-N>", "<C-\\><C-N>", { desc = "Going to Normal Mode in terminal view with lesser keystrokes" })
+-- Language server commands
+vim.lsp.enable({
+	'lua_ls',
+	'clangd'
+})

@@ -1,0 +1,13 @@
+[core]
+	editor = nvim
+	excludesfile = ~/.global_gitignore
+[init]
+	defaultBranch = main
+[user]
+	email = irtazahyder2002@gmail.com
+	name = irtaza
+[commit]
+	template = ~/.commit_template
+[alias]
+	graph = log --all --graph --decorate --oneline
+	s = status
