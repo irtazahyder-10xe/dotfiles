@@ -37,5 +37,7 @@ vim.keymap.set('t', '<C-n>', "<C-\\><C-n><C-w>l",{silent = true})
 -- Language server commands
 vim.lsp.enable({
 	'lua_ls',
-	'clangd'
+	'clangd',
+	'sv_ls',
+	'pyzuban_ls'
 })
