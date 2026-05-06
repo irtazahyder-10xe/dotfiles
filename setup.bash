@@ -43,7 +43,7 @@ for filename in "$TEMP_DIR"/*.tar.gz; do
     # Result: "tests_1.2.tar.gz" -> "tests"
     prefix="${filename%%.tar.gz*}"
 
-    DEST="/opt/$folder"
+    DEST="/opt/$prefix"
     mkdir -p "$DEST"
 
     echo "Extracting $filename to $DEST..."

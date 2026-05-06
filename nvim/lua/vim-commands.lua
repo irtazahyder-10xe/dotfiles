@@ -41,3 +41,10 @@ vim.lsp.enable({
 	'sv_ls',
 	'pyzuban_ls'
 })
+
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+
+vim.diagnostic.config({
+	virtual_text = true,
+})
